@@ -1,17 +1,25 @@
 import { RouteObject } from "react-router-dom";
-import LoginPage from "../pages/Login";
-import RegisterPage from "../pages/Register";
-import AdminLayout from "../layouts/admin";
+import Dashboard from "../pages/admin/Dashboard";
+import UserListPage from "../pages/admin/user/UserListPage";
 
 type CustomRouterObject = {};
 
 const adminRouter: Array<RouteObject & CustomRouterObject> = [
   {
-    path: "dashboard",
+    path: "admin",
     children: [
       {
         path: "home",
-        children: [{ index: true, element: <AdminLayout /> }],
+        children: [{ index: true, element: <Dashboard /> }],
+      },
+      {
+        path: "users",
+        children: [
+          {
+            index: true,
+            element: <UserListPage />,
+          },
+        ],
       },
     ],
   },
