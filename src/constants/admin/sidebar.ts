@@ -23,8 +23,9 @@ const item = (
 });
 
 const ADMIN_SIDEBAR_DATA = [
-  item("Home", "/admin/home", GoHome),
+  item("Home", "/admin", GoHome),
   item("User", "/admin/users", FaRegUserCircle ),
+  item("Products", "/admin/products", FaRegUserCircle ),
 ];
 
 export { ADMIN_SIDEBAR_DATA };

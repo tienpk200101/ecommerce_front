@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
-import Pagination from "./common/components/Pagination";
-import { UserType } from "../../../types/admin/user";
 import axios from "axios";
 import dayjs from "dayjs";
+import Pagination from "../../common/components/Pagination";
+import { Link } from "react-router-dom";
+import { UserType } from "../../../types/user";
 
 type FetchListUserType = {
   users: UserType[];
@@ -32,9 +33,12 @@ const ListUser = () => {
           />
         </div>
         <div>
-          <button className="px-[20px] py-[5px] bg-success-light text-white text-center text-[16px] rounded-[5px]">
+          <Link
+            to={"/admin/users/create"}
+            className="px-[20px] py-[5px] bg-success-light text-white text-center text-[16px] rounded-[5px]"
+          >
             Tạo mới
-          </button>
+          </Link>
         </div>
       </div>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -62,7 +66,10 @@ const ListUser = () => {
             users.length > 0 &&
             users.map((user) => {
               return (
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tr
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                  key={user.id}
+                >
                   <td className="text-center">
                     <input type="checkbox" className="cursor-pointer" />
                   </td>
@@ -70,11 +77,16 @@ const ListUser = () => {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {user.name}
+                    {/* {user.name} */}
+                    Hello world
                   </th>
                   <td className="px-6 py-4">{user.email}</td>
                   <td className="px-6 py-4">Verified</td>
-                  <td className="px-6 py-4">{user.last_login_at ? dayjs(user.last_login_at).format("YYYY-MM-DD HH:mm") : ""}</td>
+                  <td className="px-6 py-4">
+                    {user.last_login_at
+                      ? dayjs(user.last_login_at).format("YYYY-MM-DD HH:mm")
+                      : ""}
+                  </td>
                 </tr>
               );
             })}

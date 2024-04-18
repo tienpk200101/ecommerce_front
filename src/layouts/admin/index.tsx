@@ -12,7 +12,7 @@ const AdminLayout = ({ children }: LayoutProps) => {
   return (
     <div className="w-full h-[100vh] flex items-center rounded-[10px] bg-slate-100 box-content text-secondary-dark">
       {/* Sidebar */}
-      <div className="w-[15%] min-w-[250px] max-w-full overflow-y-auto h-full border border-blue-500 scrollbar-hide">
+      <div className="w-[15%] min-w-[250px] max-w-full overflow-y-auto h-full bg-white scrollbar-hide">
         <div className="w-full h-[60px] border border-secondary-lesslight">
           Logo
         </div>
@@ -28,6 +28,7 @@ const AdminLayout = ({ children }: LayoutProps) => {
           })}
         </div>
       </div>
+      {/* <Sidebar /> */}
       <div className="w-full h-full mx-[30px]">
         <div className="h-[60px] w-full flex items-center justify-end gap-x-[20px] border-b border-b-secondary-light">
           <div className="flex items-center w-full h-full">
