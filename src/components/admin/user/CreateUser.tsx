@@ -1,13 +1,26 @@
 import React, { ChangeEvent } from "react";
 import { UserType } from "../../../types/user";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schemaCreateUser = yup.object({
+  username: yup.string().required(),
+  email: yup.string().required(),
+  first_name: yup.string().required(),
+  last_name: yup.string().required(),
+}).required();
 
 const CreateUser = () => {
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(schemaCreateUser)
+  });
   const [userData, setUserData] = React.useState<UserType>({});
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserData((userData) => ({ ...userData, [name]: value }));
   };
-  console.log(userData);
+
   return (
     <div className="w-full px-[20px]">
       <div className="text-[20px] flex items-center justify-between">

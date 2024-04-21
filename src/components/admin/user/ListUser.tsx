@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
-import axios from "axios";
 import dayjs from "dayjs";
 import Pagination from "../../common/components/Pagination";
 import { Link } from "react-router-dom";
 import { UserType } from "../../../types/user";
+import { UserModel } from "../../../models/user";
 
 type FetchListUserType = {
   users: UserType[];
@@ -12,13 +12,15 @@ type FetchListUserType = {
 };
 const ListUser = () => {
   const [users, setUsers] = useState<UserType[]>([]);
+  
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/admin/user/get-list-user")
-      .then((res) => {
-        const data: FetchListUserType = res.data.result.data;
-        setUsers(data.users);
-      });
+    const fetchUsers = async () => {
+      const data: FetchListUserType = await UserModel.getUsers();
+
+      setUsers(data.users);
+    };
+
+    fetchUsers();
   }, []);
 
   return (
